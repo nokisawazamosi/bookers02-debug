@@ -17,8 +17,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
- 
-      
+
+
 
   def is_followed_by?(user)
     reverse_of_ralationships.find_by(follower_id: user.id).present?
@@ -27,7 +27,7 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
-  
+
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")
@@ -39,6 +39,6 @@ class User < ApplicationRecord
       @user = User.where("name LIKE", "%#{word}%")
     else
       @user = User.all
-    end 
+    end
   end
 end
